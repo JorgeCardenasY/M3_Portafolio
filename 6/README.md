@@ -1,0 +1,1 @@
+Se han creado varias funciones seaparads, las cuales se agrupan en un menú interactivo , permitiéndo calcular el área de diversas formas geométricas básicas.
