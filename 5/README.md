@@ -1,0 +1,1 @@
+Conforme lo requerido, se ha generado un sistema interactivo de agenda de contactos que almacena el nombre y el teléfono en un sistema clave:valor. Al usuario se le solicita que ingrese nombre y teléfono. Se ha estandarizado el uso de mayúsculas para los nombres a través del método .upper() tanto durante el almacenamiento como en la búsqueda de contactos.
