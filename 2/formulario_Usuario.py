@@ -12,7 +12,7 @@ def registrar_usuario():
     usuarios.append(usuario)
     print('Usuario registrado exitosamente.')
     time.sleep(2)
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     return usuario
 
 def mostrar_usuarios():
@@ -23,7 +23,7 @@ def mostrar_usuarios():
         print(f'Ciudad: {usuario["ciudad"]}')
         print('------------------')
     input('Presiona Enter para continuar...')
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     return usuarios
 
 def menu():
@@ -40,36 +40,27 @@ def menu():
             if len(usuarios) == 0:
                 print('No hay usuarios registrados.')
                 time.sleep(2)
-                os.system('cls')
+                os.system('cls' if os.name == 'nt' else 'clear')
             mostrar_usuarios()
         elif opcion == '3':
-            nombres = [usuario["nombre"] for usuario in usuarios if "nombre" in usuario]
-            print(f'Los nombres de los usuarios registrados son: \n{nombres}')
-            apellidos = [usuario["apellido"] for usuario in usuarios if "apellido" in usuario]
-            print(f'Los apellidos de los usuarios registrados son:\n {apellidos}')
-            regiones = [usuario["region"] for usuario in usuarios if "region" in usuario]
-            print(f'Las regiones de los usuarios registrados son:\n {regiones}')
-            ciudades = [usuario["ciudad"] for usuario in usuarios if "ciudad" in usuario]
-            print(f'Las ciudades de los usuarios registrados son:\n {ciudades}')
-            input('Presiona Enter para continuar...')
-            os.system('cls')
-        else:
-            print('Opción no válida. Inténtalo de nuevo.')
-            time.sleep(2)
-            os.system('cls')
-        if not usuarios:
-            print('No hay usuarios registrados.')
-            time.sleep(2)
-            os.system('cls')
-
-            input('\nDiccionario Vacío:\nPresiona Enter para continuar...')
-            os.system('cls')
+            if len(usuarios) == 0:
+                print('No hay usuarios registrados.')
+                time.sleep(2)
+                os.system('cls' if os.name == 'nt' else 'clear')
+            else:
+                print('Información almacenada por Variables:')
+                nombres = [usuario["nombre"] for usuario in usuarios if "nombre" in usuario]
+                print(f'Los nombres de los usuarios registrados son:\n{nombres}')
+                apellidos = [usuario["apellido"] for usuario in usuarios if "apellido" in usuario]
+                print(f'Los apellidos de los usuarios registrados son:\n{apellidos}')
+                regiones = [usuario["region"] for usuario in usuarios if "region" in usuario]
+                print(f'Las regiones de los usuarios registrados son:\n{regiones}')
+                ciudades = [usuario["ciudad"] for usuario in usuarios if "ciudad" in usuario]
+                print(f'Las ciudades de los usuarios registrados son:\n{ciudades}')
+                input('Presiona Enter para continuar...')
+                os.system('cls' if os.name == 'nt' else 'clear')
         elif opcion == '4':
             break
-        else:
-            print('Opción no válida. Inténtalo de nuevo.')
-            time.sleep(2)
-            os.system('cls')
 
 if __name__ == '__main__':
     menu()
