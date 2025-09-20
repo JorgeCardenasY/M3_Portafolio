@@ -1,39 +1,77 @@
 import os
 import time
 
+usuarios = []
 def registrar_usuario():
-    usuarios = []
-    
     nombre = input('Por favor, ingresa tu Primer Nombre:\n')
     apellido = input('Por favor, ingresa tu Primer Apellido:\n')
     region = input('Por favor, ingresa tu Región de Residencia:\n')
     ciudad = input('Por favor, ingresa tu Ciudad de Residencia:\n')
 
-    return [nombre, apellido, region, ciudad]
+    usuario = {'nombre': nombre, 'apellido': apellido, 'region': region, 'ciudad': ciudad}
+    usuarios.append(usuario)
+    print('Usuario registrado exitosamente.')
+    time.sleep(2)
+    os.system('cls')
+    return usuario
 
-os.system('cls' if os.name == 'nt' else 'clear')
-print('Bienvenido al formulario de Registro Arbitrario\n')
-print("Deseamos conocerte. Ten a bien responder las siguientes preguntas:\n")
+def mostrar_usuarios():
+    for usuario in usuarios:
+        print(f'Nombre: {usuario["nombre"]}')
+        print(f'Apellido: {usuario["apellido"]}')
+        print(f'Región: {usuario["region"]}')
+        print(f'Ciudad: {usuario["ciudad"]}')
+        print('------------------')
+    input('Presiona Enter para continuar...')
+    os.system('cls')
+    return usuarios
 
-wait_time = 5
-time.sleep(wait_time)
-os.system('cls' if os.name == 'nt' else 'clear')
+def menu():
+    while True:
+        print('Menu de Opciones')
+        print('1. Registrar Usuario')
+        print('2. Mostrar Usuarios')
+        print('3. Mostrar Información almacenada por Variables')
+        print('4. Salir')
+        opcion = input('Selecciona una opcion: ')
+        if opcion == '1':
+            registrar_usuario()
+        elif opcion == '2':
+            if len(usuarios) == 0:
+                print('No hay usuarios registrados.')
+                time.sleep(2)
+                os.system('cls')
+            mostrar_usuarios()
+        elif opcion == '3':
+            nombres = [usuario["nombre"] for usuario in usuarios if "nombre" in usuario]
+            print(f'Los nombres de los usuarios registrados son: \n{nombres}')
+            apellidos = [usuario["apellido"] for usuario in usuarios if "apellido" in usuario]
+            print(f'Los apellidos de los usuarios registrados son:\n {apellidos}')
+            regiones = [usuario["region"] for usuario in usuarios if "region" in usuario]
+            print(f'Las regiones de los usuarios registrados son:\n {regiones}')
+            ciudades = [usuario["ciudad"] for usuario in usuarios if "ciudad" in usuario]
+            print(f'Las ciudades de los usuarios registrados son:\n {ciudades}')
+            input('Presiona Enter para continuar...')
+            os.system('cls')
+        else:
+            print('Opción no válida. Inténtalo de nuevo.')
+            time.sleep(2)
+            os.system('cls')
+        if not usuarios:
+            print('No hay usuarios registrados.')
+            time.sleep(2)
+            os.system('cls')
 
-Usuarios = registrar_usuario()
-print(f'Gracias!. Haz sido registrado exitosamente con los datos\n {Usuarios[-1]}\n')
-while True:
-    otro_usuario = input('¿Desea agregar otro usuario? Presiona 1 para Sí o cualquier otra tecla para No:\n')
-    if otro_usuario == '1':
-        Usuarios.append(registrar_usuario())
-    else:
-        break
+            input('\nDiccionario Vacío:\nPresiona Enter para continuar...')
+            os.system('cls')
+        elif opcion == '4':
+            break
+        else:
+            print('Opción no válida. Inténtalo de nuevo.')
+            time.sleep(2)
+            os.system('cls')
 
-print("\nSe registraron los siguientes usuarios:")
-for i, usuario in enumerate(Usuarios, 1):
-    print(f"\nUsuario {i}:")
-    print(f"Nombre: {usuario[0]}")
-    print(f"Apellido: {usuario[1]}")
-    print(f"Región: {usuario[2]}")
-    print(f"Ciudad: {usuario[3]}")
+if __name__ == '__main__':
+    menu()
+    print('Gracias por utilizar el programa.')
 
-print("Gracias por usar el formulario de Registro Arbitrario. ¡Hasta luego!\n")

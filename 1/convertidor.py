@@ -9,7 +9,7 @@ while True:
     try:
         monto = int(sopes)
         print(f"¡Perfecto! Has ingresado el número entero: {monto}")
-        break  # Se sale del bucle si la conversión es exitosa
+        break
     except ValueError:
         print("Error: Por favor, ingresa un número entero válido.")
 
